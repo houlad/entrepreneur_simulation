@@ -1,0 +1,11 @@
+file: big_multiple_investment_realistic_investment_table_good_investor.rds
+file_size: 38618933
+pin_hash: 872d1aad12deaaf8
+type: rds
+title: 'big_multiple_investment_realistic_investment_table_good_investor: a pinned
+  9497948 x 9 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251016T154601Z
+api_version: 1

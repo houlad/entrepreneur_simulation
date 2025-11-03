@@ -1,0 +1,10 @@
+file: big_multiple_investment_win_or_lose.rds
+file_size: 1455468
+pin_hash: edc9ee1fa6e1b008
+type: rds
+title: 'big_multiple_investment_win_or_lose: a pinned 2339320 x 9 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251016T154609Z
+api_version: 1

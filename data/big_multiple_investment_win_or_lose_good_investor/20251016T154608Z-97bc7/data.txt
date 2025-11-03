@@ -1,0 +1,11 @@
+file: big_multiple_investment_win_or_lose_good_investor.rds
+file_size: 1807727
+pin_hash: 97bc7394d26a9652
+type: rds
+title: 'big_multiple_investment_win_or_lose_good_investor: a pinned 2442542 x 9 data
+  frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251016T154608Z
+api_version: 1

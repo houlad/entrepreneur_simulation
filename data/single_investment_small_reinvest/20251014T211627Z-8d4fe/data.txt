@@ -1,0 +1,10 @@
+file: single_investment_small_reinvest.rds
+file_size: 5725912
+pin_hash: 8d4fe1f84e6b71b0
+type: rds
+title: 'single_investment_small_reinvest: a pinned 1225537 x 9 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251014T211627Z
+api_version: 1

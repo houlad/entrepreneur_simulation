@@ -1,0 +1,11 @@
+file: big_multiple_investment_stingy_investment_table_good_investor.rds
+file_size: 5152295
+pin_hash: 5994dd96e672cf3b
+type: rds
+title: 'big_multiple_investment_stingy_investment_table_good_investor: a pinned 3151439
+  x 9 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251016T154606Z
+api_version: 1

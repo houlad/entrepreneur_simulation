@@ -1,0 +1,10 @@
+file: multiple_investment_large_reinvest.rds
+file_size: 51861266
+pin_hash: 4d82bec3bb8df69e
+type: rds
+title: 'multiple_investment_large_reinvest: a pinned 13438045 x 9 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251014T221041Z
+api_version: 1
