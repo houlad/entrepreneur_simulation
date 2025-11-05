@@ -24,6 +24,11 @@ my_plot_theme <- function(base_family="Karla",
   aplot
 }
 
+filter_by_condition <- function(df, condition, ...){
+  df |> 
+    filter({{condition}}, ...)
+}
+
 ####### Racing Plots
 plot_racing_graph <- function(df, title = NULL,
                               subtitle = NULL,
@@ -254,25 +259,27 @@ plot_returns_bar_graph <- function(df, x_variable, title = NULL, subtitle = NULL
                                              "10 - 100%", "100 - 1,000%",
                                              "1,000 - 10,000%", "> 10,000%"))) |> 
     ggplot(aes(x = {{x_variable}}, y = value, fill = fct_rev(return_amount)))+
-    geom_bar(position = 'fill', stat = 'identity', alpha = .75)+
+    geom_bar(position = 'fill', stat = 'identity', alpha = .9)+
     scale_fill_nejm()+
     theme_minimal()+
-    scale_y_continuous(labels = scales::percent_format())+
+    scale_y_continuous(expand = expansion(add = c(0, 0)),
+      labels = scales::percent_format())+
+    scale_x_discrete(expand = expansion(add = c(0.5,0)))+
     labs(
       x = "Starting Capital",
       y = "",
       title = title,
       subtitle = subtitle,
-      fill = 'Return Percentage'
+      fill = '% Return'
     )+
     my_plot_theme()+
-    theme(legend.position = 'none')
+    theme(legend.position = 'none',
+          panel.grid.major.x = element_blank())
   
   if(add_legend){
     plot <- plot + theme(legend.position = 'bottom',
                  legend.box = 'horizontal',
-                 legend.title.position = 'bottom',
-                 legend.title = element_text(hjust = .5))+
+                 legend.title.position = 'left')+
       guides(fill = guide_legend(nrow = 1, reverse = TRUE))
   }
   plot
@@ -283,21 +290,21 @@ realistic_bar_plot <- returns_data |>
   filter_by_condition(id %in% c('single_investment_small_reinvest', 
                                 'multiple_investment_small_reinvest', 
                                 'big_multiple_investment_realistic_investment_table')) |>
-  plot_returns_bar_graph(x_variable = investment_capital_multiple, title = 'Investor Return Percentages',
-                 subtitle = 'Realistic Return Table')
+  plot_returns_bar_graph(x_variable = investment_capital_multiple, title = 'What rate of return are investors earning?',
+                 subtitle = 'Realistic Table')
 
 stingy_bar_plot <- returns_data |> 
   filter_by_condition(id %in% c('single_investment_stingy_investment_table', 
                                 'multiple_investment_stingy_investment_table', 
                                 'big_multiple_investment_stingy_investment_table')) |>
-  plot_returns_bar_graph(x_variable = investment_capital_multiple, subtitle = 'Stingy Return Table',
+  plot_returns_bar_graph(x_variable = investment_capital_multiple, subtitle = 'Stingy Table',
                  add_legend = TRUE)
 
 boom_bust_bar_plot <- returns_data |> 
   filter_by_condition(id %in% c('single_investment_win_or_lose',
                                 'multiple_investment_win_or_lose', 
                                 'big_multiple_investment_win_or_lose')) |>
-  plot_returns_bar_graph(x_variable = investment_capital_multiple, subtitle = 'Boom-Bust Return Table')
+  plot_returns_bar_graph(x_variable = investment_capital_multiple, subtitle = 'Boom-Bust Table')
 
 realistic_returns_plot <- realistic_bar_plot+stingy_bar_plot+boom_bust_bar_plot
 ggsave("realistic_returns_plot.png", realistic_returns_plot)
@@ -323,6 +330,8 @@ big_multiple_good_v_normal_investor <- returns_data |>
 good_v_normal_return_rate_plot <- big_multiple_good_v_normal_investor + multiple_good_v_normal_investor+single_good_v_normal_investor
 ggsave("good_v_normal_return_rate_plot.png", good_v_normal_return_rate_plot)
 
+
+########## millionaire bar graphs
 plot_millionaire_bar_graph <- function(df, x_variable, title = NULL, subtitle = NULL, add_legend = FALSE){
   
   plot <- df|> 
@@ -336,10 +345,12 @@ plot_millionaire_bar_graph <- function(df, x_variable, title = NULL, subtitle = 
                                   levels = c("< Millionaire", "Millionaire", "Decamillionaire", "Centimillionaire",
                                              "Billionaire", "Decabillionaire"))) |> 
     ggplot(aes(x = {{x_variable}}, y = value, fill = fct_rev(return_amount)))+
-    geom_bar(position = 'fill', stat = 'identity', alpha = .75)+
+    geom_bar(position = 'fill', stat = 'identity', alpha = .9)+
     scale_fill_nejm()+
     theme_minimal()+
-    scale_y_continuous(labels = scales::percent_format())+
+    scale_y_continuous(expand = expansion(add = c(0,0)),
+                       labels = scales::percent_format())+
+    scale_x_discrete(expand = expansion(add = c(0.5, 0)))+
     labs(
       x = "Starting Capital",
       y = "",
@@ -348,13 +359,13 @@ plot_millionaire_bar_graph <- function(df, x_variable, title = NULL, subtitle = 
       fill = 'Final Wealth'
     )+
     my_plot_theme()+
-    theme(legend.position = 'none')
+    theme(legend.position = 'none',
+          panel.grid.major.x = element_blank())
   
   if(add_legend){
     plot <- plot + theme(legend.position = 'bottom',
                          legend.box = 'horizontal',
-                         legend.title.position = 'bottom',
-                         legend.title = element_text(hjust = .5))+
+                         legend.title.position = 'left')+
       guides(fill = guide_legend(nrow = 1, reverse = TRUE))
   }
   plot
@@ -367,11 +378,12 @@ millionaire_bar_plot <- millionaire_data |>
   select(investment_capital_multiple, where(is.numeric)) |>
   # pivot_longer(-investment_capital_multiple, names_to = 'return_amount', values_to = 'value' ) |> 
   plot_millionaire_bar_graph(x_variable = investment_capital_multiple, add_legend = TRUE,
-                             title = "What Percentage of Investors Finished Investing with Profit Making them \n Millionaire's, Billionaires, etc?",
-                             subtitle = "Investors with More Starting Capital Finish with More Profit")
+                             title = "What percentage of investors became millionaires, billionaires, etc?",
+                             subtitle = "Investors with more starting capital finish with higher wealth")
 ggsave("millionaire_bar_plot.png", millionaire_bar_plot)
 
 
+######## All simulations together millionaire bar graph
 total_millionaire_bar_plot <- millionaire_data |> 
   filter(id != 'multiple_investment_large_reinvest', id != 'multiple_investment_medium_reinvest', 
          id != 'single_investment_large_reinvest', id != 'single_investment_medium_reinvest') |> 
@@ -388,23 +400,27 @@ total_millionaire_bar_plot <- millionaire_data |>
   geom_bar(position = 'fill', stat = 'identity', alpha = .8)+
   scale_fill_nejm()+
   theme_minimal()+
-  scale_y_continuous(labels = scales::percent_format())+
+  scale_y_continuous(expand = expansion(add = c(0,0)),
+                     labels = scales::percent_format())+
+  scale_x_discrete(expand = expansion(add = c(0.5, 0)))+
   labs(
     x = "",
     y = "",
-    title = "Proportion of Millionaires, Billionaires, etc Produced in all Simulations \n by Starting Capital Amount",
-    subtitle = "~90% of Billionaires Came From Simulation Scenarios with 10x or 20x Starting Capital",
+    title = "Proportion of millionaires, billionaires, etc produced in all simulations \n by starting capital amount",
+    subtitle = "~90% of billionaires came from simulation scenarios with 10x or 20x starting capital",
     fill = 'Starting Capital'
   )+
   my_plot_theme()+
   theme(legend.position = 'bottom',
-                        legend.box = 'horizontal',
-                        legend.title.position = 'bottom',
-                        legend.title = element_text(hjust = .5))+
+        legend.box = 'horizontal',
+        legend.title.position = 'left', 
+        panel.grid.major.x = element_blank())+
   guides(fill = guide_legend(nrow = 1, reverse = TRUE))
 
 ggsave("total_millionaire_bar_plot.png", total_millionaire_bar_plot)
 
+
+######### made/lost money bar graph
 winner_loser_bar_plot <- winner_loser_data |> 
   filter_by_condition(id %in% c('single_investment_small_reinvest', 
                                 'multiple_investment_small_reinvest', 
@@ -419,18 +435,20 @@ winner_loser_bar_plot <- winner_loser_data |>
   geom_bar(position = 'fill', stat = 'identity', alpha = .75)+
   scale_fill_nejm()+
   theme_minimal()+
-  scale_y_continuous(labels = scales::percent_format())+
+  scale_y_continuous(expand = expansion(add = c(0,0)),
+                     labels = scales::percent_format())+
+  scale_x_discrete(expand = expansion(add = c(0.5, 0)))+
   labs(
     x = "",
     y = "",
-    title = "What Proportion of Investors Made Money versus Lost Money",
-    subtitle = 'Realistic Investment Table',
+    title = "What proportion of investors made money versus lost money?",
+    subtitle = 'Realistic Table',
     fill = "Investment Returns"
   )+
   my_plot_theme()+
   theme(legend.position = 'bottom',
         legend.box = 'horizontal',
-        legend.title.position = 'bottom',
-        legend.title = element_text(hjust = .5))+
+        legend.title.position = 'left',
+        panel.grid.major.x = element_blank())+
   guides(fill = guide_legend(nrow = 1, reverse = TRUE))
 ggsave("winner_loser_bar_plot.png", winner_loser_bar_plot)  
