@@ -19,7 +19,7 @@ library(patchwork)
 library(gt)
 ```
 
-There is common adage these days that goes something like this: the wealthy, and billionaires in particular, are not genius investors, they just have more rolls of the dice at the investment table than you do. So let's say you work and work, eventually saving up \$100,000 to invest in a startup that you just know is going to become the next Apple. That's great, and you might even be correct and make a lot of money, but those that *start* wealthy, according to the adage, will invest \$100,000 in the next Apple, but they'll also be able to invest in 10, 20, 30 other startups that may or may not hit it big too. Another way you hear this is as throws of a dart- you have one dart to hit the bullseye, someone else has 10 darts to hit it. Who do you think is going to perform better on average?
+There is common adage these days that goes something like this: the wealthy, and billionaires in particular, are not genius investors, they just have more rolls of the dice at the investment table than you do. Let's say you work and work, eventually saving up \$100,000 to invest in a startup that you just know is going to become the next Apple. That's great, and you might even be correct and make a lot of money, but those that *start* wealthy, according to the adage, will invest \$100,000 in the next Apple, but they'll also be able to invest in 10, 20, 30 other startups that may or may not hit it big too. Another way you hear this is as throws of a dart- you have one dart to hit the bullseye, someone else has 10 darts to hit it. Who do you think is going to perform better on average?
 
 This adage has always stuck in the back of my mind as something that is potentially true, but also something that I have a hard time visualizing. It would be great if I could have concrete numbers that I can look at and analyse to really intuit what exactly this starting advantage means in terms of the resultant wealth generated. Well, lucky for me I love exploring topics via simulations. Maybe it's just me, but often I find results from statistics and probability confusing and difficult to really parse and internalize, but when I can build a simulation, even though it's necessarily simplified, I can flesh out a deeper understanding of the mechanics of what is taking place. Let's figure out how we're going to approach this.
 
@@ -441,13 +441,13 @@ After a lot of meandering, we can finally come back to our motivating question: 
 
 ![Returns Table](returns_table.png){#tbl-one width=100%}
 
-@fig-eight shows investment return percentages for each of our starting capital amounts and for the three different return tables we've used in our simulations. What's perfectly clear is that the number of investors who make money decreases as your starting capital decreases. As we can see in @tbl-one, the percentage of realistic table investors who lose money drops from ~78% of 1x investors to merely ~23% of 20x investors. Looking at investors who actually made money, in our realistic investment table, over 50% of the 20x capital group made at least 100% returns on their investments. Putting that in real numbers, that means since they started with \$20 million, over 50% of the 20x investors at least doubled their capital to \$40 million. Our 10x starting capital group still has nearly 40% of its investors making returns of 100% or more, but we have to be careful with our interpretation here. A 100% return for our 10x group means that they earned at least \$20 million. For our 1x group, ~15% of investors still earned at least 100% returns, but that real dollar amount is now 'only' \$2 million. 
+@fig-eight shows investment return percentages for each of our starting capital amounts and for the three different return tables we've used in our simulations. What's perfectly clear is that the number of investors who make money decreases as your starting capital decreases. As we can see in @tbl-one, the percentage of realistic table investors who lose money drops from ~78% of 1x investors to merely ~23% of 20x investors. Looking at investors who made money, in our realistic investment table, over 50% of the 20x capital group made at least 100% returns on their investments. Putting that in real numbers, that means since they started with \$20 million, over 50% of the 20x investors at least doubled their capital to \$40 million. Our 10x starting capital group still has nearly 40% of investors making returns of 100% or more, but we have to be careful with our interpretation here. A 100% return for our 10x group is '*only*' \$20 million. For our 1x group, ~15% of investors earned at least 100% returns, but that real dollar amount is now '*only*' \$2 million. 
 
-This is good evidence for starting capital being an enormously important factor when it comes to final investor wealth, but if you are like me, this isn't entirely satisfying. Return percentages are nice, but as we discussed above, 100% return for a 20x investor and a 1x investor aren't really the same thing--in fact the difference is \$38 million! We aren't asking if the rates of return these investors make are different, we are asking if, at the end of the day, these investors wind up with vastly different amounts of money. Since that's the real question, why don't we just tally up the simulated investor wealth and see where we land?  
+This is good evidence for starting capital being an enormously important factor when it comes to final investor wealth, but if you are like me, this isn't entirely satisfying. Return percentages are nice, but as we discussed above, 100% return for a 20x investor and a 1x investor aren't really the same thing--in fact the difference is \$38 million! We aren't asking if the rates of return these investors make are different, we are asking if, at the end of the day, these investors wind up with vastly different levels of wealth. If that's the real question, why don't we just tally up the simulated investor wealth and see where we land?  
 
 #### How Much Profit Are These Investors Actually Making?
 
-When we do this tallying up to see what portion of investors reach various levels of wealth, we see more evidence that starting capital plays a critical role in final investment wealth. As we can see in @fig-nine, most investors with 10x or 20x starting capital earn at minimum millions in profit, while the vast majority of 1x investors do not. In fact, as you can see in @tbl-two, not even 5,000 1x investors ended up with a net worth of more than \$10 million, while the 10x and 20x investors place ~40,000 and ~60,000+ respectively in the decamillionaire+ club. Perhaps most glaring is the discrepency in the number of billionaires produced. You can't even see the sliver of billionaires in the 1x bar(a mere 30 investors), and while the 10x and 20x slice is admittedly still small(as it should be), they still produced 5-9 times more billionaires than the 1x group.
+When we tally up what portion of investors reach various levels of wealth, we see more evidence that starting capital plays a critical role in final investment wealth. As we can see in @fig-nine, most investors with 10x or 20x starting capital finish, at minimum, with wealth in the millions, while the vast majority of 1x investors do not. In fact, as you can see in @tbl-two, not even 5,000 1x investors reach a net worth of more than \$10 million, while the 10x and 20x investors place ~60,000 and ~90,000+ respectively in the decamillionaire+ club. Perhaps most glaring is the discrepency in the number of billionaires produced. You can't even see the sliver of billionaires in the 1x bar(a mere 30 investors), and while the 10x and 20x slice is admittedly still small(as you would expect), they still produced 6-10 times more billionaires than the 1x group.
 
 ![Millionaire Bar Plot](millionaire_bar_plot.png){#fig-nine width=100%}
 
@@ -455,20 +455,28 @@ When we do this tallying up to see what portion of investors reach various level
 
 #### Let's Look at All the Simulations at Once!
 
-Perhaps this is even clearer if we take the data from all our simulations(except the handful with different reinvestment percentages) and tally up how many millionaires, billionaires, etc we have. That is 1.8 million simulated investors with 600k investors for each starting capital amount. @fig-ten is the result. You can see immediately that the overwhelming majority of centimillionaires and billionaires came from 10x or 20x capital simulations. This isn't something that is statistically marginal and we should probably do a hypothesis test or something to be on more firm footing. In my opinion, this is one of those 'oh, this is obviously true' plots. 
+Perhaps this is even clearer if we take the data from all our simulations(except the handful with different reinvestment percentages) and tally up how many millionaires, billionaires, etc we have. That is 1.8 million simulated investors with 600k investors for each starting capital amount. @fig-ten is the result. You can see immediately that the overwhelming majority of centimillionaires and billionaires came from 10x or 20x capital simulations. This isn't something that is statistically marginal and we should probably do a hypothesis test or something to be on more firm footing. In my opinion, this is one of those '*oh, this is obviously true*' plots.
 
 ![Total Millionaires Bar Plot](total_millionaire_bar_plot.png){#fig-ten width=100%}
 
 #### What If We Only Care Whether Investors Made or Lost Money
 
-@fig-ten seems like pretty strong evidence that more starting capital to invest with results in more billionaires. But maybe, at the end of the day the adage isn't meant to say that more throws means more billionaires, but instead more throws means you make money more often (which would of course wind up at the same place of more billionaires, but stick with me). Is *that* always true? Well, according to the simulation results, yes. If you look at @fig-eleven, if you are investing with 20x starting capital, it's not a sure thing you are going to make money as an investor, but it's basically a coin flip. Intuitively, this makes some sense. You have a sizeable number of investments you can make before you run out of your initial capital, so even when you are no better an investor than anyone else, you simply have more investments you can make to get lucky and land on an investment that pans out. On the other hand, the 1x investors, if they lose on that first investment throw, they are out of money. That's why you you see nearly 80% of 1x investors losing money. By definition in our simulations they aren't any worse at investing that the 10x or 20x investors, but, unlike the 10x or 20x, unless and until they hit a winning investment, every single investment roll is basically an all in.
+@fig-ten seems like pretty strong evidence that more starting capital results in more billionaires. But maybe, at the end of the day, the adage isn't meant to say that more investment throws means more billionaires, but instead more throws means you make money more often (which would of course wind up at the same place of more billionaires, but ignore that for now). Is *that* always true? Well, according to the simulation results, yes. If you look at @fig-eleven, if you are investing with 20x starting capital, it's not a sure thing you are going to make money as an investor, but it's basically a coin flip. Intuitively, this makes some sense. You have a sizeable number of investments you can make before you run out of your initial capital, so even when you are no better an investor than anyone else, you simply have more investments you can make to get lucky and land on an investment that pans out. On the other hand, the 1x investors, if they lose on that first investment throw, they are out of money. That's why you see nearly 80% of 1x investors losing money. By definition, in our simulations they aren't any worse at investing than the 10x or 20x investors, but, unlike the 10x or 20x, unless and until they hit a winning investment, every single investment roll is basically an all in. Some of those 1x investors will still get lucky and hit a good investment on their first try, paying out, say, 20 times their investment, but most of them will not and are forced into this repeating all or nothing posture.
 
 ![Winner Loser Bar Plot](winner_loser_bar_plot.png){#fig-eleven width=100%}
 
 
 ![Made/Lost Money](winner_loser_table.png){#tbl-three width=100%}
 
+What if a 1x investor does get lucky and lands a 20x return on their first investment? In a sense, that would transform their situation from having to go all in every investment to something more akin to what the 20x investors are doing. We can actually look at this scenario by doing some filtering to look at just those 1x investors who got the maximum 20x return on their first investment of the simulation. This is ~2,000 investors. How did *those* investors end up faring? Pretty well according to @fig-twelve. These results look similar to the 20x capital investors we examined earlier. These appear even better, but that's mainly because this is a small (@fig-twelve only represents about 2,000 investors, while the bars from @fig-nine represent 100,000), and biased (@fig-twelve is essentially showing the results of investors that we already know have won at least once) sample of the total investor group. 
+
+
+
+![Lucky First Round 1x Investors](first_round_winners_1x.png){#fig-twelve width=100%}
+
 # Conclusions
+
+So at the end of all this, what have we learned? In a lot of ways, nothing here is especially surprising. People that have more money at the start, tend to have more money at the end. We all kind of know this
 
 
 ```{r eval = FALSE}
@@ -550,7 +558,7 @@ bin_dollar_value_returns <- function(df){
     group_by(sim_id) |> 
     filter(round == max(round)) |> 
     ungroup() |> 
-    mutate(end_wealth = (total_realized_profit + current_bankroll) - start_capital) |> 
+    mutate(end_wealth = (total_realized_profit + current_bankroll)) |> 
     group_by(id) |> 
     summarise(less_than_million = sum(end_wealth < 1000000),
               Millionaire = sum(end_wealth >= 1000000 & end_wealth < 10000000),
@@ -630,6 +638,10 @@ millionaire_data <- millionaire_data |>  extract_sim_identifiers()
 investor_data <- investor_data |> extract_sim_identifiers()
 winner_loser_data <- winner_loser_data |> extract_sim_identifiers()
 
+```
+
+
+```{r tables, eval = FALSE}
 
 returns_table <- returns_data |> 
   select(-sim_label, -investment_capital) |> 
@@ -641,12 +653,12 @@ returns_table <- returns_data |>
   relocate(investment_table, investment_capital_multiple, perc_lost_money, zero_to_ten, ten_to_one_hundred,
            one_hundred_to_one_thousand, one_thousand_to_ten_thousand, greater_than_ten_thousand) |> 
   rename(investment_capital = investment_capital_multiple,
-         '< 0%' = perc_lost_money,
-         '0 - 10%' = zero_to_ten,
-         '10 - 100%' = ten_to_one_hundred,
-         '100 - 1,000%' = one_hundred_to_one_thousand,
-         '1,000 - 10,000%' = one_thousand_to_ten_thousand,
-         '> 10,000%' = greater_than_ten_thousand 
+         '<0%' = perc_lost_money,
+         '0-10%' = zero_to_ten,
+         '10-100%' = ten_to_one_hundred,
+         '100-1,000%' = one_hundred_to_one_thousand,
+         '1,000-10,000%' = one_thousand_to_ten_thousand,
+         '>10,000%' = greater_than_ten_thousand 
     ) |> 
   gt() |> 
   tab_style(
