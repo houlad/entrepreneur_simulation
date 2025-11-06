@@ -1,0 +1,10 @@
+file: millionaire_data.rds
+file_size: 913
+pin_hash: a5cd6783fa7433cf
+type: rds
+title: 'millionaire_data: a pinned 22 x 12 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251106T214840Z
+api_version: 1

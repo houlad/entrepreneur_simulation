@@ -176,13 +176,16 @@ investor_data <- map(all_simulations, ~calculate_return_metrics_investors(.x)) |
 millionaire_data <- map(all_simulations, ~ bin_dollar_value_returns(.x)) |> list_rbind()
 winner_loser_data <- map(all_simulations, ~lost_made_money(.x)) |> list_rbind()
 
-
 # Relabel various features
 profits_data <- profits_data |> extract_sim_identifiers()
 returns_data <- returns_data |>  extract_sim_identifiers()
 millionaire_data <- millionaire_data |>  extract_sim_identifiers()
 investor_data <- investor_data |> extract_sim_identifiers()
 winner_loser_data <- winner_loser_data |> extract_sim_identifiers()
+
+# pins::pin_write(data_board, x = returns_data, name = 'returns_data')
+# pins::pin_write(data_board, x = millionaire_data, name = 'millionaire_data')
+# pins::pin_write(data_board, x = winner_loser_data, name = 'winner_loser_data')
 
 ############ build return metric tables (all simulations except those with different reinvestment percentages)
 table_styling <- function(tbl, percent_format = FALSE){

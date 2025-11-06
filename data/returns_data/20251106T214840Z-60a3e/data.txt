@@ -1,0 +1,10 @@
+file: returns_data.rds
+file_size: 1283
+pin_hash: 60a3e3ccf2eaa353
+type: rds
+title: 'returns_data: a pinned 22 x 12 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251106T214840Z
+api_version: 1

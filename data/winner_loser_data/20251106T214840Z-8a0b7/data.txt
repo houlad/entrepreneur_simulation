@@ -1,0 +1,10 @@
+file: winner_loser_data.rds
+file_size: 734
+pin_hash: 8a0b72b8760e453b
+type: rds
+title: 'winner_loser_data: a pinned 22 x 8 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20251106T214840Z
+api_version: 1
