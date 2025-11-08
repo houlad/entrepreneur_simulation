@@ -112,17 +112,19 @@ investment_tables_racing_plot <-
 ggsave('investment_tables_racing_plot.png', investment_tables_racing_plot)
 
 
-# different investment tables 10x investment
+# different investment tables 20x investment
 investment_tables_multiple_racing_plot <- 
-  build_stacked_racing_plot(c("multiple_investment_small_reinvest", 'multiple_investment_stingy_investment_table',
-                              "multiple_investment_win_or_lose"),
-                            plot_title = 'Investment results of 10x starting capital with \n realistic, stingy, and boom-bust investment tables',
+  build_stacked_racing_plot(c("big_multiple_investment_realistic_investment_table", 
+                              'big_multiple_investment_stingy_investment_table',
+                              "big_multiple_investment_win_or_lose"),
+                            plot_title = 'Investment results of 20x starting capital with \n realistic, stingy, and boom-bust investment tables',
                             p1_subtitle = 'Realistic investment table',
                             p2_subtitle = 'Stingy investment table',
                             p3_subtitle = 'Boom-Bust investment table',
                             y_label = 'Total Investment Income($)',
                             x_label = 'Investment Rounds')
-ggsave('investment_tables_multiple_racing_plot.png', investment_tables_multiple_racing_plot)
+ggsave('investment_tables_multiple_racing_plot.png', investment_tables_multiple_racing_plot,
+       height = 10, width = 10)
 
 # single investment normal v good
 srn <- all_simulations$single_investment_small_reinvest |> 
@@ -152,7 +154,7 @@ ggsave('multiple_normal_v_good.png', multiple_normal_v_good)
 single_small_medium_large_reinvestment <- 
   build_stacked_racing_plot(c("single_investment_small_reinvest", 'single_investment_medium_reinvest',
                               "single_investment_large_reinvest"),
-                            plot_title = 'Investment results of 1x starting capital with realistic investment tables',
+                            plot_title = 'Investment results of 1x starting capital with realistic investment tables \n and different reinvestment percentages',
                             p1_subtitle = 'Small reinvestment',
                             p2_subtitle = 'Medium reinvestment',
                             p3_subtitle = 'Large reinvestment',
